@@ -3,16 +3,8 @@ package pl.vortexinfinitum.game.utils;
 //https://easings.net/
 public class Easing {
 
-    public static float easeOutElastic(float from, float to, float percent) {
-        return from + (to - from) * easeOutElastic(percent);
-    }
-
-    public static float easeInOutElastic(float from, float to, float percent) {
-        return from + (to - from) * easeInOutElastic(percent);
-    }
-
-    public static float easeOutBounce(float from, float to, float percent) {
-        return from + (to - from) * easeOutBounce(percent);
+    public static float apply(float from, float to, float scale) {
+        return from + (to - from) * scale;
     }
 
     public static float easeOutElastic(Float x) {
@@ -20,10 +12,10 @@ public class Easing {
         return (float) (x == 0 ? 0 : x == 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1);
     }
 
-
     public static float easeInOutElastic(Float x) {
         float c5 = (2 * (float) Math.PI) / 4.5f;
-        return (float) (x == 0 ? 0 : x == 1 ? 1 : x < 0.5 ? -(Math.pow(2, 20 * x - 10) * Math.sin((20 * x - 11.125) * c5)) / 2 : (Math.pow(2, -20 * x + 10) * Math.sin((20 * x - 11.125) * c5)) / 2 + 1);
+        double sin = Math.sin((20 * x - 11.125) * c5);
+        return (float) (x == 0 ? 0 : x == 1 ? 1 : x < 0.5 ? -(Math.pow(2, 20 * x - 10) * sin) / 2 : (Math.pow(2, -20 * x + 10) * sin) / 2 + 1);
     }
 
     public static float easeOutBounce(Float x) {

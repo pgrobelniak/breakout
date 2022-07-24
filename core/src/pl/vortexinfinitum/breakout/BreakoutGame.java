@@ -149,11 +149,11 @@ public class BreakoutGame extends ApplicationAdapter {
             rect = ballRect;
         } else {
             rect = new Rectangle();
-            float percent = (System.currentTimeMillis() - introStartTime) / (float) INTRO_DURATION;
-            rect.x = Easing.easeOutBounce(0, ballRect.x, percent);
-            rect.y = Easing.easeOutBounce(0, ballRect.y, percent);
-            rect.width = Easing.easeOutBounce(Gdx.graphics.getWidth(), ballRect.width, percent);
-            rect.height = Easing.easeOutBounce(Gdx.graphics.getHeight(), ballRect.height, percent);
+            float scale = Easing.easeOutBounce((System.currentTimeMillis() - introStartTime) / (float) INTRO_DURATION);
+            rect.x = Easing.apply(0, ballRect.x, scale);
+            rect.y = Easing.apply(0, ballRect.y, scale);
+            rect.width = Easing.apply(Gdx.graphics.getWidth(), ballRect.width, scale);
+            rect.height = Easing.apply(Gdx.graphics.getHeight(), ballRect.height, scale);
         }
         batch.draw(img, rect.x, rect.y, rect.width, rect.height);
         batch.end();
